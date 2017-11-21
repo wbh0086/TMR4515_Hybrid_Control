@@ -8,11 +8,8 @@ M = 1;                  %[kg]    cart mass
 m = 0.75;               %[kg]    pendulum mass
 b = 0.1;                %[N·s/m] damper coefficient
 k = 0.15;               %[N/m]   spring stiffness
-sat_linear = 5*pi/180;  %[rad]   linear saturation for theta in linear model
-sat_nl = pi/2;          %[raf]   saturation for theta in nonlinear model
 g = 9.81;               %[m/s^2] gravitational acceleration
 L = 1.4;                %[m]     Presumed rod length for linearized model
-X_0 = [0;1*pi/180;0;0];
 
 % matrices for systems
 A = [0 0 1 0; 0 0 0 1; -k/M -m*g/M -b/M 0; k/(M*L) (m+M)*g/(M*L) b/(M*L) 0];
@@ -31,6 +28,7 @@ Ts = 0.001;              %[s]     sampling time
 duration = 10;          %[s]     simulation time
 
 % variables
+X_0 = [0;1*pi/180;0;0];  %        initial states
 u = 0.175;               %[N]     Force imposed on the cart
 w_p = 0;                 %        noise power of band-limited white noise w
 f_p = 0;                 %        noise power of band-limited white noise f
