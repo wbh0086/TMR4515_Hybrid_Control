@@ -1,5 +1,5 @@
 clear all
-close all
+%close all
 clc
 
 %% Basic Parameters
@@ -28,15 +28,15 @@ Ts = 0.001;              %[s]     sampling time
 duration = 10;           %[s]     simulation time
 
 % variables
-X_0 = [0;1*pi/180;0;0];
+X_0 = [0;45*pi/180;0;0];
 u = 10;                   %[N]     Force imposed on the cart
 w_p = 10;                 %        noise power of band-limited white noise w
 f_p = 1e-4;               %        noise power of band-limited white noise f
 m_p = 1e-7;
 
 %% LQR
-Q = diag([100 100 0 0]);
-R = 10;
+Q = diag([100 1000 0 0]);
+R = 100;
 K = lqr(A,B,Q,R);
 
 % precompensator
@@ -45,7 +45,7 @@ Nbar = -pinv(B)*A*pinv(Cn)+K*pinv(Cn);
 
 %% Running Simulation
 % choose linear model or nonlinear model
-k_model = 0;            % input 0 to run linear model; input 1 to run nonlinear model
+k_model = 1;            % input 0 to run linear model; input 1 to run nonlinear model
 
 if k_model == 0
     sim pdl_linear_hw2

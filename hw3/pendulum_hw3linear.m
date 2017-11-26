@@ -54,6 +54,7 @@ Nbar = -pinv(B_a)*A_a*pinv(Cn)+K*pinv(Cn);
 %% Kalman filter
 [Phi,Delta] = c2d(A_a,B_a,Ts);
 [Phi,Gamma] = c2d(A_a,E_a,Ts);
+
 Q_k = diag([1 1]);
 R_k = 1e-4*diag([1 1]);
 
